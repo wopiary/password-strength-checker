@@ -49,7 +49,7 @@ strength_label = ['ClearText Risk', 'Encrypted Gate', 'Quantum Vault']
 cleartext_risk = []
 encrypted_gate = []
 quantum_vault = []
-def passwordstrengthcheck():
+def passwordstrengthcheck(password):
     score = 0
     # check length
     length = len(user_password)
@@ -64,7 +64,6 @@ def passwordstrengthcheck():
     specials = "!@#$%^&*()_+{}[]|\\:;\"'<>,.?/~`"
 
     if any(char in specials for char in user_password):
-        score += 2
         score += 1
     else:
         score += 0
@@ -74,12 +73,15 @@ def passwordstrengthcheck():
         if letter.islower():
             score += 0
         elif letter.isupper():
-            score += 0
             score +=1
-            score +=2
+    
+    #digits
+    if any(user_password.isdigit() for user_password in password):
+        score += 1
+
+    #usual
+    
+
 result= passwordstrengthcheck(user_password)
 print(f'pass strength : {result}')
 passwordstrengthcheck()
-
-
-
